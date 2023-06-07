@@ -1,0 +1,54 @@
+openapi: 3.0.3
+info:
+  title: 1c Api Gateway
+  contact:
+    name: API Support
+    url: https://ensi.tech/contacts
+    email: mail@greensight.ru
+  version: 1.0.0
+  description: 1c Api Gateway
+servers:
+  - url: /api/v1
+tags:
+  - name: examples
+    description: Тэг-пример
+paths:
+
+components:
+  parameters:
+    QueryInclude:
+      $ref: './common_parameters.yaml#/QueryInclude'
+    PathId:
+      $ref: './common_parameters.yaml#/PathId'
+  schemas:
+    EmptyDataResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          nullable: true
+        meta:
+          type: object
+      required:
+          - data
+    PaginationTypeEnum:
+      $ref: './common_schemas.yaml#/PaginationTypeEnum'
+  responses:
+    BadRequest:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: './errors.yaml#/ErrorResponse'
+    NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: './errors.yaml#/ErrorResponse'
+    ServerError:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: './errors.yaml#/ErrorResponse'
